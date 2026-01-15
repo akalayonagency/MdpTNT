@@ -1,34 +1,29 @@
-<div style="max-width:520px;margin:40px auto;padding:20px;border:1px solid #ddd;border-radius:12px;">
-  <h2 style="margin:0 0 10px;">Accès</h2>
-  <p style="margin:0 0 20px;opacity:.8;">Entre le code de la semaine pour continuer.</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès</title>
+</head>
+<body>
 
-  <input id="pwd" type="password" placeholder="Code de la semaine"
-         style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-bottom:10px;" />
-
-  <button onclick="checkPwd()"
-          style="width:100%;padding:12px;border:0;border-radius:10px;cursor:pointer;">
-    Accéder
-  </button>
-
-  <p id="msg" style="color:#c00;margin-top:12px;display:none;">Mauvais code.</p>
+<div style="max-width:520px;margin:40px auto;">
+  <input id="pwd" type="password" placeholder="Code">
+  <button onclick="checkPwd()">Accéder</button>
+  <p id="msg" style="display:none;color:red;">Mauvais code</p>
 </div>
 
 <script>
-  // ✅ ICI tu changes ton code chaque semaine
-  const WEEKLY_CODE = "CHANGE-MOI";
-
-  // ✅ ICI tu mets l'URL de ta page "secrète"
-  const DESTINATION_URL = "/page-secrete";
+  const WEEKLY_CODE = "LAYON-TNT-2026";
+  const DESTINATION_URL = "https://layon-agency.odoo.com/";
 
   function checkPwd(){
-    const val = document.getElementById("pwd").value || "";
-    const msg = document.getElementById("msg");
-
-    if(val === WEEKLY_CODE){
-      msg.style.display = "none";
+    if(document.getElementById("pwd").value === WEEKLY_CODE){
       window.location.href = DESTINATION_URL;
     } else {
-      msg.style.display = "block";
+      document.getElementById("msg").style.display = "block";
     }
   }
 </script>
+
+</body>
+</html>
