@@ -1,29 +1,109 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Accès</title>
-</head>
-<body>
+<div class="tnt-gate-wrap">
+  <div class="tnt-gate">
+    <div class="tnt-title">💥 TNT ACCESS</div>
+    <div class="tnt-sub">Code requis</div>
 
-<div style="max-width:520px;margin:40px auto;">
-  <input id="pwd" type="password" placeholder="Code">
-  <button onclick="checkPwd()">Accéder</button>
-  <p id="msg" style="display:none;color:red;">Mauvais code</p>
+    <div class="tnt-row">
+      <input id="pwd" type="password" class="tnt-input" placeholder="Code TNT" />
+      <button class="tnt-btn" onclick="checkPwd()">GO</button>
+    </div>
+
+    <div id="msg" class="tnt-msg">❌ Mauvais code</div>
+  </div>
 </div>
 
+<style>
+  .tnt-gate-wrap{
+    display:flex;
+    justify-content:center;
+    padding:20px 10px;
+  }
+
+  .tnt-gate{
+    width: min(340px, 100%);
+    padding: 14px;
+    border-radius: 10px;
+    background:
+      linear-gradient(145deg, #b00000, #ff3b3b);
+    border: 3px solid #111;
+    box-shadow: 0 12px 0 #111;
+    font-family: "Minecraft", system-ui, monospace;
+    color: #fff;
+  }
+
+  .tnt-title{
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 2px 2px 0 #111;
+  }
+
+  .tnt-sub{
+    font-size: 11px;
+    text-align: center;
+    opacity: .9;
+    margin-bottom: 10px;
+  }
+
+  .tnt-row{
+    display:flex;
+    gap:6px;
+  }
+
+  .tnt-input{
+    flex:1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 2px solid #111;
+    font-size: 12px;
+    outline: none;
+  }
+
+  .tnt-btn{
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 2px solid #111;
+    background: #111;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .tnt-btn:active{
+    transform: translateY(2px);
+  }
+
+  .tnt-msg{
+    margin-top: 8px;
+    font-size: 11px;
+    color: #ffe1e1;
+    text-align: center;
+    display: none;
+  }
+</style>
+
 <script>
+  // 🔑 Code de la semaine
   const WEEKLY_CODE = "LAYON-TNT-2026";
-  const DESTINATION_URL = "https://layon-agency.odoo.com/";
+
+  // 🎯 Destination
+  const DESTINATION_URL = "/page-secrete";
 
   function checkPwd(){
-    if(document.getElementById("pwd").value === WEEKLY_CODE){
+    const val = document.getElementById("pwd").value.trim();
+    const msg = document.getElementById("msg");
+
+    if(val === WEEKLY_CODE){
+      msg.style.display = "none";
       window.location.href = DESTINATION_URL;
     } else {
-      document.getElementById("msg").style.display = "block";
+      msg.style.display = "block";
     }
   }
-</script>
 
-</body>
-</html>
+  document.getElementById("pwd").addEventListener("keydown", e => {
+    if(e.key === "Enter") checkPwd();
+  });
+</script>
